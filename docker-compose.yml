@@ -1,0 +1,52 @@
+version: '3.7'
+services:
+  ansible_control:
+    depends_on:
+    - ansible_target
+    build:
+      context: build/ansible-control
+      args:
+        - BASE_IMAGE=gliderlabs/alpine:latest
+    container_name: ansible-control
+    image: ansible_control_image
+    environment:
+      - ANSIBLE_GATHERING=smart
+      - ANSIBLE_HOST_KEY_CHECKING=false
+      - ANSIBLE_PATH=/ansible/bin
+      - ANSIBLE_RETRY_FILES_ENABLED=false
+      - ANSIBLE_ROLES_PATH=/ansible/playbook/roles
+      - ANSIBLE_SCP_IF_SSH=y
+      - ANSIBLE_SSH_PIPELINING=True
+      - ANSIBLE_PLAYBOOK=ChangeMePlaybook.yml
+      - PYTHONPATH=/ansible/lib
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./build/ansible-control/playbook:/ansible/playbook
+      - ~/.ssh/id_rsa_no_pass:/root/.ssh/id_rsa
+      - ~/.ssh/id_rsa_no_pass.pub:/root/.ssh/id_rsa.pub
+    networks:
+      - ansible_net
+
+  ansible_target:
+    build:
+      context: build/ansible-target
+      args:
+        - BASE_IMAGE=ubuntu:latest
+    container_name: ansible-target
+    image: ansible_target_image
+    environment:
+      - CREATE_FILES=/etc/apt/apt.conf.d/10periodic
+    stdin_open: true
+    tty: true
+    volumes:
+      - ~/.ssh/id_rsa_no_pass.pub:/root/.ssh/authorized_keys
+    networks:
+      - ansible_net
+    expose:
+      - 22
+    privileged: true
+
+networks:
+  ansible_net:
+    driver: bridge
