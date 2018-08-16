@@ -1,7 +1,7 @@
-ARG BASE_IMAGE=gliderlabs/alpine:latest
+ARG BASE_IMAGE=alpine:latest
 FROM $BASE_IMAGE
 
-RUN apk-install curl openssh-client python py-boto py-dateutil py-httplib2 \
+RUN apk add curl openssh-client python py-boto py-dateutil py-httplib2 \
                 py-jinja2 py-paramiko py-pip py-setuptools py-yaml tar && \
     pip install --upgrade pip && rm -rf /var/cache/apk/*
 

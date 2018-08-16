@@ -6,7 +6,7 @@ services:
     build:
       context: build/ansible-control
       args:
-        - BASE_IMAGE=gliderlabs/alpine:latest
+        - BASE_IMAGE=alpine:latest
     container_name: ansible-control
     image: ansible_control_image
     environment:
