@@ -37,8 +37,7 @@ readonly USAGE="${0} -d <playbook_dir> [-b(uild)] [-c(opy playbook)]"
 ################################################################################
 readonly BAD_ARGUMENT_ERROR=90
 readonly MISSING_DIR_ERROR=91
-readonly MISSING_PLAYBOOK_ERROR=92
-readonly COPY_ERROR=93
+readonly COPY_ERROR=92
 
 
 ################################################################################
