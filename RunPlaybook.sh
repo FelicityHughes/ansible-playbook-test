@@ -140,10 +140,6 @@ get_playbook_dir() {
                     "Could not copy inventory file to *${PLAYBOOK_COPY}*!"
   fi
 
-  cd "${BUILD_DIR}" || \
-     exit_with_error ${MISSING_DIR_ERROR} \
-                     "Could not change to ${BUILD_DIR} dir."
-
   cd "${WORKING_DIR}" || \
      exit_with_error ${MISSING_DIR_ERROR} \
                      "Could not change to ${WORKING_DIR} dir."
