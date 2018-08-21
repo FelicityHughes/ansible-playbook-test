@@ -133,7 +133,8 @@ get_playbook_dir() {
 #             -b (build containers) and -c (copy playbook).
 #################################################################################
 main() {
-  ARGS=("${@}")
+  local -r ARGS=("${@}")
+
   check_args "${ARGS[@]}"
   remove_docker_containers
   get_playbook_dir
