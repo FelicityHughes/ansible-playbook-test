@@ -83,11 +83,8 @@ The containers can be shut down from the project root with:
 docker-compose down
 ```
 
-...add `-v` to tear down the container's volume.  You should do this if you plan
-to completely get rid of the container.
-
-The Docker container, volume and images from which the container is built can
-all be removed in one go with:
+The Docker container and images from which the container is built can be removed
+in one go with:
 
 ```
 ./Cleanup.sh
