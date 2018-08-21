@@ -55,7 +55,6 @@ REBUILD="${FALSE}"
 ################################################################################
 check_args() {
   local dir_specified="${FALSE}"
-  local file_specified="${FALSE}"
 
   while [[ ${#} -gt 0 ]]; do
     case "${1}" in
