@@ -107,7 +107,7 @@ get_playbook_dir() {
   local new_inventory_name="inventory"
   local return_val="${SUCCESS}"
 
-  # Make sure we only have playbook directory relevant for this script run.
+  # Make sure we only have one playbook directory relevant for this script run.
   remove_copied_playbook
 
   cp -r "${PLAYBOOK_DIR}" "${PLAYBOOK_COPY}"
