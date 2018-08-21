@@ -102,23 +102,15 @@ remove_copied_playbook() {
 
 
 ################################################################################
-# Shuts down all containers built from local docker-compose.yml file, optionally
-# tearing down their volumes as well.
-#
-# @param ABANDON_VOLUME If true, indicates volumes should be removed.
+# Shuts down all containers built from local docker-compose.yml file.
 ################################################################################
 remove_docker_containers() {
-  local -r ABANDON_VOLUME="${1}"
   local -r FIRST_SERVICE="$("yq" "r" "${WORKING_DIR}/docker-compose.yml" \
                             "services" | "sed" "-n" "1 s/:$//p")"
   local -r SERVICE_ID="$("docker-compose" "ps" "-q" "${FIRST_SERVICE}")"
 
   if [[ "${SERVICE_ID}" != "" ]]; then
-    if ((ABANDON_VOLUME == TRUE)); then
-      docker-compose down -v
-    else
-      docker-compose down
-    fi
+    docker-compose down
   fi
 }
 

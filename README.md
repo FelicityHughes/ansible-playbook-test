@@ -30,7 +30,7 @@ The following commands should be run from the project root, where
 Run the program with:
 
 ```
-./RunPlaybook.sh -d <ansible playbook directory> [-b] [-c]
+./RunPlaybook.sh -d <ansible playbook directory> [-b]
 ```
 
 ...where:
@@ -38,13 +38,8 @@ Run the program with:
 * *-d* specifies the source playbook directory, which is copied to the build
   directory and mounted as a volume in the Ansible control container.
 * *-b* (optional) specifies the containers should be brought down and rebuilt.
-  This takes precedence over the *-c* flag and should be used when the Docker
-  image (environment or arguments) needs to change.
-* *-c* (optional) specifies the Ansible playbook should be re-copied.  It will
-  bring the containers down and restart them with the changes mounted in a fresh
-  volume, rather than perform a full rebuild.  **NEVER** change the playbook in
-  the build directory - always change the original source so changes are not
-  lost on a container restart.
+  This should be used when the Docker image (environment or arguments) needs to
+  change.
 
 #### Checking logs  
 The *ansible-control* container will not display output from the playbook
