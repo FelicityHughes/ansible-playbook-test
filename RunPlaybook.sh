@@ -130,7 +130,7 @@ get_playbook_dir() {
 # top of the script.
 #
 # @param ARGS Command line flags, including -d <playbook_dir> and the optional
-#             -b (build containers) and -c (copy playbook).
+#             -b (build containers).
 #################################################################################
 main() {
   local -r ARGS=("${@}")
