@@ -78,7 +78,7 @@ check_args() {
           shift
         done
 
-        if [[ ${PLAYBOOK_DIR} == "" ]]; then
+        if [[ "${PLAYBOOK_DIR}" == "" ]]; then
           exit_with_error "${BAD_ARGUMENT_ERROR}" \
                           "Option ${1} requires an argument.  Usage:  ${USAGE}"
         fi
