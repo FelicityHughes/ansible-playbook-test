@@ -54,8 +54,6 @@ REBUILD="${FALSE}"
 # @param $@ All arguments passed on the command line.
 ################################################################################
 check_args() {
-  local dir_specified="${FALSE}"
-
   while [[ ${#} -gt 0 ]]; do
     case "${1}" in
       -b)
@@ -83,8 +81,6 @@ check_args() {
         if [[ ${PLAYBOOK_DIR} == "" ]]; then
           exit_with_error "${BAD_ARGUMENT_ERROR}" \
                           "Option ${1} requires an argument.  Usage:  ${USAGE}"
-        else
-          dir_specified="${TRUE}"
         fi
         ;;
       *)
@@ -95,7 +91,7 @@ check_args() {
     shift
   done
 
-  if ((dir_specified == FALSE)); then
+  if [[ ${PLAYBOOK_DIR} == "" ]]; then
     exit_with_error "${MISSING_DIR_ERROR}" \
                     "No directory specified!  Usage:  ${USAGE}"
   fi
