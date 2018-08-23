@@ -138,7 +138,7 @@ trap_with_signal() {
 # @param LOG_MESSAGE The message to write.
 ################################################################################
 write_log() {
-  LOG_MESSAGE="${1}"
+  local -r LOG_MESSAGE="${1}"
 
   echo "$("date" "${LOG_DATE_FORMAT}") - ${LOG_MESSAGE}" 1>&2;
 }
