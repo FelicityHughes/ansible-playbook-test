@@ -38,8 +38,13 @@ Run the program with:
 * *-d* specifies the source playbook directory, which is copied to the build
   directory and mounted as a volume in the Ansible control container.
 * *-b* (optional) specifies the containers should be brought down and rebuilt.
-  This should be used when the Docker image (environment or arguments) needs to
-  change.
+  This should be used when the **Docker image** (environment or arguments) needs
+  to change.  **Don't** use this when testing playbook changes.*
+  
+<sup>
+  *Playbook changes should be performed in the Ansible source directory, not 
+the copy placed in this project's <code>build/ansible-control</code> directory during execution.
+</sup>
 
 #### Checking logs  
 The *ansible-control* container will not display output from the playbook
